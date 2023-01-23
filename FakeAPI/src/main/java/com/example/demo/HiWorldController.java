@@ -1,13 +1,8 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.DTO.Product;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -39,5 +34,13 @@ public class HiWorldController {
         return restTemplate.exchange(
                 "https://api.escuelajs.co/api/v1/categories",
                 HttpMethod.GET, entity, String.class).getBody();
+    }
+    @PostMapping("/products")
+    public String createProduct (@RequestBody Product product) {
+        System.out.println(product);
+        ResponseEntity<String> response =
+                restTemplate.postForEntity("https://api.escuelajs.co/api/v1/products", product, String.class);
+        System.out.println(response.getBody());
+        return response.getBody();
     }
 }
