@@ -1,6 +1,6 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import com.example.demo.DTO.Product;
+import com.example.demo.DTO.Entities.Product;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
